@@ -61,5 +61,30 @@ const people = [
     favoriteBook: 'Harry Potter and The Chamber of Secrets',
     petName: 'Bua'
   }
+  {
+    name: 'Marzia',
+    surname: 'Bragagnolo',
+    age: 29,
+    city: 'Resana',
+    hobby: [
+      {
+        id: 1,
+        name: 'Crocheting'
+      },
+      {
+        id: 2,
+        name: 'Games'
+      },
+      {
+        id: 3,
+        name: 'Wood art'
+      }
+    ],
+    favoriteFood: 'Gnocchi',
+    favoriteVideoGame: "Assassin's creed",
+    favoriteFilm: 'Una settimana da Dio',
+    favoriteBook: "La Passe-Miroir Livre 4, La tempête des écho",
+    petName: 'Uga'
+  }
   // Aggiungi nuovi oggetti qui!
 ];
