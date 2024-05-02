@@ -35,87 +35,11 @@ const people = [
     favoriteFilm: 'Inception',
     favoriteBook: 'Odissea',
     petName: 'Lilo'
-  },
-  {
-    name: 'Luigi',
-    surname: 'Cavalli',
-    age: 26,
-    city: 'Reggio Calabria',
-    hobby: [
-      {
-        id: 1,
-        name: 'Cooking'
-      },
-      {
-        id: 2,
-        name: 'Videogames'
-      },
-      {
-        id: 3,
-        name: 'Hiking'
-      }
-    ],
-    favoriteFood: 'Pizza',
-    favoriteVideoGame: 'The Last Of Us',
-    favoriteFilm: 'The Truman Show',
-    favoriteBook: 'Harry Potter and The Chamber of Secrets',
-    petName: 'Bua'
-  },
-  {
-    name: 'Marzia',
-    surname: 'Bragagnolo',
-    age: 29,
-    city: 'Resana',
-    hobby: [
-      {
-        id: 1,
-        name: 'Crocheting'
-      },
-      {
-        id: 2,
-        name: 'Games'
-      },
-      {
-        id: 3,
-        name: 'Wood art'
-      }
-    ],
-    favoriteFood: 'Gnocchi',
-    favoriteVideoGame: "Assassin's creed",
-    favoriteFilm: 'Una settimana da Dio',
-    favoriteBook: "La Passe-Miroir Livre 4, La tempête des écho",
-    petName: 'Uga'
-  },
-  {
-    name: 'Lorenzo',
-    surname: 'de Vita',
-    age: 23,
-    city: 'Napoli',
-    hobby: [
-      {
-        id: 1,
-        name: 'Videogames'
-      },
-      {
-        id: 2,
-        name: 'Music'
-      },
-      {
-        id: 3,
-        name: 'Cinema'
-      }
-    ],
-    favoriteFood: 'Pizza',
-    favoriteVideoGame: 'Baldur\'s gate 3',
-    favoriteFilm: 'Lord of the rings',
-    favoriteBook: 'Zanna bianca',
-    petName: ''
-  },
+  }
   // Aggiungi nuovi oggetti qui!
 ];
 
-
-//Stampa i nomi in ordine alfabetico (surname name).
+// Stampa i nomi in ordine alfabetico (surname name).
 const sortedByName = people.slice().sort((a, b) => {
   if (a.surname === b.surname) {
     return a.name.localeCompare(b.name);
@@ -133,19 +57,21 @@ console.log('\nTeam in age order:');
 sortedByAge.forEach((person) => console.log(`${person.name} ${person.age}`));
 
 // Stampa l'età media.
-const middleAge = people.reduce((acc, person) => acc + person.age, 0) / people.length;
-console.log(`\nTeam's middle age: ${middleAge}`);
+const middleIndex = people.reduce((acc, person, index) => {
+  acc = (acc * index + person.age) / (index + 1);
+  return acc;
+}, 0);
+console.log(`\nTeam middle age: ${middleIndex}`);
 
-//Stampa chi ha un animale domestico (name petName).
+// Stampa chi ha un animale domestico (name petName).
+
 console.log('\nMembers who have a pet:');
-const peopleWithPets = people.slice().filter((person) => person.petName);
-if (peopleWithPets.length > 0) {
-  peopleWithPets.forEach((person) => {
-    console.log(`${person.name} has a pet named ${person.petName}.`);
-  });
-} else {
-  console.log('Nobody in the team has a pet.');
+const peopleWithPets = people.filter((person) => person.petName).map((person) => person.name);
+
+if (peopleWithPets.length === 0) {
+  console.log("No one has a pet")
 }
+console.log(peopleWithPets.join(`, `));
 
 // Stampa chi ha indicato League of Legends come gioco preferito. (name).
 let anyoneLikesLol = false;
@@ -165,7 +91,7 @@ if (!anyoneLikesLol) {
   console.log(`No one likes League of Legends`);
 }
 
-// Stampa eventuali nomi duplicati (name).
+// Print if there are some members with the same name (name).
 
 let sameName = false;
 const names = {};
